@@ -1,0 +1,62 @@
+﻿@{
+    string id = (string)ViewData["id"];
+}
+@*<div class="container d-flex">
+    <div class="flex-grow-1">
+        @if(Model != null)
+        {
+            <img class="img-fluid" src=@Model.ImageUrl />
+        }
+    </div>
+    <div class="flex-grow-2 ps-5">
+        <h2>@Model.Name</h2>
+        @if(Model.Category != null){
+            <h3>@Model.Category.Name</h3>
+        }
+        <p>@Model.Description</p>
+        <h3>Ingredients: </h3>
+        @foreach(Ingredient ingredient in @Model.Ingredients)
+        {
+            <p class="py-0 ps-3 my-0">@ingredient.Name</p>
+        }
+        <p class="py-4">@Model.Price</p>
+    </div>
+</div>*@
+
+<script>
+
+    axios.get("/api/pizzacontroller/pizzadetail/@id")
+        .then(function (response) {
+        // handle success
+            const pizza = response.data;
+            let ingredientsHtml = "";
+            if (pizza.ingredients != undefined) {
+            }
+            pizza.ingredients.forEach(ing => {
+                let p = `<p>${ing.name}</p>`
+                ingredientsHtml += p;
+            })
+
+            const main = document.querySelector("main");
+            const container = document.createElement("div");
+            container.className = "container d-flex";
+            container.innerHTML = `<div class="flex-grow-1">
+
+                                        <img class="img-fluid" src=${pizza.imageUrl} />
+                                        
+                                    </div>
+                                    <div class="flex-grow-2 ps-5">
+                                        <h2>${pizza.name} </h2>
+
+                                        <h3>${pizza?.category? pizza.category.name :""}</h3>
+                                        
+                                        <p>${pizza.description}</p>
+                                        <h3>Ingredients: </h3>
+                                        ${ingredientsHtml}
+                                        <p class="py-4">${pizza.price} $</p>
+                                    </div>`;
+            main.append(container);
+
+        })
+        
+</script>

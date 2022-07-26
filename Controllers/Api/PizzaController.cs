@@ -14,9 +14,20 @@ namespace la_mia_pizzeria_static.Controllers.Api
         public IActionResult PizzaList()
         {
             PizzaContext context = new PizzaContext();
-            List<Pizza> pizzaList = context.Pizzas.Include("Ingredients").Include("Category").ToList();
+            List<Pizza> pizzaList = context.Pizzas.ToList();
 
             return Ok(pizzaList);
+        }
+
+        [Route("PizzaDetail/{id?}")]
+        public IActionResult PizzaDetail()
+        {
+            int id = int.Parse((string)RouteData.Values["id"]);
+
+            PizzaContext context = new PizzaContext();
+            Pizza pizza = context.Pizzas.Where(p => p.Id == id).Include("Ingredients").Include("Category").FirstOrDefault();
+
+            return Ok(pizza);
         }
     }
 }

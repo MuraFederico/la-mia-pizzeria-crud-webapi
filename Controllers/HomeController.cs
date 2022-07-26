@@ -18,8 +18,10 @@ namespace la_mia_pizzeria_static.Controllers
             return View();
         }
 
-        public IActionResult PizzaList()
+        public IActionResult Details()
         {
+            string id = (string)RouteData.Values["id"];
+            ViewData["id"] = id;
             return View();
         }
 

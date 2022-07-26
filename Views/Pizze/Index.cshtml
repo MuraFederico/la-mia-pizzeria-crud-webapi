@@ -50,7 +50,7 @@ else
                 const card = document.createElement("div");
                 //<div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                 card.className = "col-sm-12 col-md-6 col-lg-4 mb-4"
-                card.innerHTML = `<div class="card text-white card-has-bg click-col" style="background-image: url(${pizza.imageUrl}); "><div class="card-img-overlay d-flex flex-column justify-content-between"><div class="card-body"><h4 class="card-title mt-0 ">${pizza.name}</h4></div><div class="card-footer align-self-end"><a class="btn btn-primary" href="">Edit</a><a class="btn btn-danger" href="">Delete</a></div></div></div></a>`;
+                card.innerHTML = `<a href="/pizze/details/${pizza.id}"> <div class="card text-white card-has-bg click-col" style="background-image: url(${pizza.imageUrl}); "><div class="card-img-overlay d-flex flex-column justify-content-between"><div class="card-body"><h4 class="card-title mt-0 ">${pizza.name}</h4></div><div class="card-footer align-self-end"><a class="btn btn-primary" href="/pizze/editform/${pizza.id}">Edit</a><a class="btn btn-danger" href="/pizze/delete/${pizza.id}">Delete</a></div></div></div></a>`;
                 container.append(card);
             })
 

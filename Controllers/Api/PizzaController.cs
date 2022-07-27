@@ -1,28 +1,34 @@
 ﻿using la_mia_pizzeria_static.DB;
 using la_mia_pizzeria_static.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace la_mia_pizzeria_static.Controllers.Api
 {
-    [Route("api/PizzaController")]
+    [Route("api/Pizza")]
     [ApiController]
     public class PizzaController : ControllerBase
     {
-        [Route("PizzaList")]
-        public IActionResult PizzaList()
+        [HttpGet]
+        public IActionResult Get(string? search)
         {
             PizzaContext context = new PizzaContext();
-            List<Pizza> pizzaList = context.Pizzas.ToList();
+            IQueryable<Pizza> pizzaList = context.Pizzas;
 
-            return Ok(pizzaList);
+            if(search != null && search != "")
+            {
+                pizzaList = context.Pizzas.Where(p => p.Name.Contains(search));
+            }
+
+            return Ok(pizzaList.ToList());
         }
 
-        [Route("PizzaDetail/{id?}")]
-        public IActionResult PizzaDetail()
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            int id = int.Parse((string)RouteData.Values["id"]);
+            /*int id = int.Parse((string)RouteData.Values["id"]);*/
 
             PizzaContext context = new PizzaContext();
             Pizza pizza = context.Pizzas.Where(p => p.Id == id).Include("Ingredients").Include("Category").FirstOrDefault();

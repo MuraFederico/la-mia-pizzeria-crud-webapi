@@ -5,7 +5,7 @@
 
 <section class="wrapper">
 <div class="container">
-
+    <input id="search" type="text" class="mb-4" placeholder="filter pizza" onkeyup="search()"/>
     <div class="row">
             @*@foreach(Pizza pizza in Model)
             {
@@ -33,10 +33,24 @@
 
 <script>
 
-    axios.get("api/pizzacontroller/pizzalist")
+getData(null);
+
+
+function search() {
+    let seacrString = document.getElementById("search").value;
+    getData(seacrString);
+}
+
+function getData(searchString) {
+    axios.get("api/pizza", {
+        params: {
+            search: searchString
+        }
+    })
         .then(function (response) {
         // handle success
             const container = document.querySelector(".row");
+            container.innerHTML = "";
             response.data.forEach(pizza => { 
                 const card = document.createElement("div");
                 //<div class="col-sm-12 col-md-6 col-lg-4 mb-4">
@@ -47,4 +61,6 @@
 
             console.log(response.data);
         })
+}
+    
 </script>

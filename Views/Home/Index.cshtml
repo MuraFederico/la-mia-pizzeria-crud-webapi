@@ -33,15 +33,29 @@
 
 <script>
 
+let shouldIgnore = false;
 getData(null);
 
 
 function search() {
-    let seacrString = document.getElementById("search").value;
-    getData(seacrString);
+
+    
+    const eleInput = document.getElementById("search");
+    let searchString = eleInput.value;
+    
+    getData(searchString)
+    
 }
 
 function getData(searchString) {
+    
+    if (shouldIgnore) {
+        return;
+    }
+
+    shouldIgnore = true
+    setInterval(() => { shouldIgnore = false }, 500);
+   
     axios.get("api/pizza", {
         params: {
             search: searchString

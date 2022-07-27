@@ -1,4 +1,4 @@
-﻿@model IQueryable<Ingredient>
+﻿@model IEnumerable<la_mia_pizzeria_static.Models.Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,7 +11,7 @@
 </p>
 
 
-@foreach (Ingredient item in Model) {
+@foreach (Category item in Model) {
        
            
     <p>@item.Name</p>

@@ -14,7 +14,7 @@ namespace la_mia_pizzeria_static.Models
 
         [JsonIgnore]
 
-        public List<Pizza> Pizzas { get; set; }
+        public List<Pizza>? Pizzas { get; set; }
         public Category()
         {
 

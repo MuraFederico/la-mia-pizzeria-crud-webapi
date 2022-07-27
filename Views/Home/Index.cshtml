@@ -33,28 +33,20 @@
 
 <script>
 
-let shouldIgnore = false;
+let globalTimeout = null;
 getData(null);
 
 
 function search() {
-
-    
     const eleInput = document.getElementById("search");
     let searchString = eleInput.value;
-    
-    getData(searchString)
-    
+    if(globalTimeout != null) clearTimeout(globalTimeout);  
+    globalTimeout =setTimeout(getData, 200, searchString);  
+
 }
 
 function getData(searchString) {
-    
-    if (shouldIgnore) {
-        return;
-    }
-
-    shouldIgnore = true
-    setInterval(() => { shouldIgnore = false }, 500);
+    globalTimeout = null;
    
     axios.get("api/pizza", {
         params: {

@@ -19,7 +19,7 @@ namespace la_mia_pizzeria_static.Controllers.Api
 
             if(search != null && search != "")
             {
-                pizzaList = context.Pizzas.Where(p => p.Name.Contains(search));
+                pizzaList = pizzaList.Where(p => p.Name.Contains(search));
             }
 
             return Ok(pizzaList.ToList());

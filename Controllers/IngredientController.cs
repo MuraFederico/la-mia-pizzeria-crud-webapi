@@ -1,11 +1,13 @@
 ﻿using la_mia_pizzeria_static.DB;
 using la_mia_pizzeria_static.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace la_mia_pizzeria_static.Controllers
 {
+    [Authorize]
     public class IngredientController : Controller
     {
         // GET: IngredientController

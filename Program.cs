@@ -1,16 +1,16 @@
-using System.Text.Json.Serialization;
+﻿using la_mia_pizzeria_static.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using la_mia_pizzeria_static.Areas.Identity.Data;
+using la_mia_pizzeria_static.Controllers.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("PizzaContextConnection") ?? throw new InvalidOperationException("Connection string 'PizzaContextConnection' not found.");
 
-builder.Services.AddDbContext<BlogContext>(options =>
+builder.Services.AddDbContext<PizzaContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<BlogContext>();
+    .AddEntityFrameworkStores<PizzaContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();/*.AddJsonOptions(x =>

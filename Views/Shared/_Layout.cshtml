@@ -27,7 +27,7 @@
                             <a class="nav-link text-danger" asp-area="" asp-controller="Home" asp-action="Impasto">Impasto</a>
                         </li>
                         <li class="nav-item flex-grow-1">
-                            <a class="nav-link text-danger" asp-area="" asp-controller="Home" asp-action="Contatti">Contatti</a>
+                            <a class="nav-link text-danger" asp-area="" asp-controller="Message" asp-action="Create">Contattaci</a>
                         </li>
                         
                         @if (User.Identity.IsAuthenticated)
@@ -48,6 +48,9 @@
                                     </li>
                                     <li class="nav-item flex-grow-1">
                                         <a class="nav-link text-danger" asp-area="" asp-controller="Category" asp-action="Index">Gestisci Categorie</a>
+                                    </li>
+                                    <li class="nav-item flex-grow-1">
+                                        <a class="nav-link text-danger" asp-area="" asp-controller="Message" asp-action="Index">Messaggi Ricevuti</a>
                                     </li>
                                 </ul>
                             </div>

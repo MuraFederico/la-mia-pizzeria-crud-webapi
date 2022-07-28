@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace la_mia_pizzeria_static.DB
+namespace la_mia_pizzeria_static.Data
 {
     public class PizzaContext : IdentityDbContext<IdentityUser>
     {
@@ -20,6 +20,8 @@ namespace la_mia_pizzeria_static.DB
         public DbSet<Ingredient> Ingredients { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

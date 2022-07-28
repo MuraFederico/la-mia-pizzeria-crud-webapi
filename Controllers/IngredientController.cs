@@ -1,4 +1,4 @@
-﻿using la_mia_pizzeria_static.DB;
+﻿using la_mia_pizzeria_static.Data;
 using la_mia_pizzeria_static.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

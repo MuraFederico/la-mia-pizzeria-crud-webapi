@@ -35,5 +35,24 @@ namespace la_mia_pizzeria_static.Controllers.Api
 
             return Ok(pizza);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            /*int id = int.Parse((string)RouteData.Values["id"]);*/
+
+            PizzaContext context = new PizzaContext();
+            Pizza toDelete = context.Pizzas.Where(p => p.Id == id).Include("Ingredients").Include("Category").FirstOrDefault();
+            if(toDelete != null)
+            {
+                context.Remove(toDelete);
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
